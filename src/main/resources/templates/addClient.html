@@ -21,12 +21,12 @@
     <label for="phoneNumber">Número de teléfono</label>
     <input type="text" th:field="*{phoneNumber}"  id="phoneNumber"/>
 
-    <select name="contact" th:field="*{contacts}">
+    <!--<select name="contact" th:field="*{contacts}">
         <option value="">Seleccione un contacto:</option>
         <option th:each="contactList : ${contacts}"
                 th:value="${contactList.getId()}"
                 th:text="${contactList.getName +' '+ contactList.getLastName1()}"></option>
-    </select>
+    </select>-->
 
     <input type="submit" value="Agregar cliente">
 

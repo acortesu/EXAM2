@@ -26,8 +26,8 @@
 
     <select name="client" th:field="*{client}">
         <option value="">Seleccione un cliente:</option>
-        <option th:each="clientList : ${clients}"
-                th:value="${clientList.getID}"
+        <option th:each="clientList : ${clientsAll}"
+                th:value="${clientList.getId()}"
                 th:text="${clientList.getName()}"></option>
     </select>
 

@@ -33,7 +33,7 @@ public class ContactController {
     @RequestMapping(value = "/addContact", method = RequestMethod.GET)
     public String contactListPage(Model model){
         List<Client> clientList = clientService.getAll();
-        model.addAttribute("clients", clientList);
+        model.addAttribute("clientsAll", clientList);
         model.addAttribute(new Contact());
         return "addContact";
     }
