@@ -1,6 +1,8 @@
 package com.examen2.teLoAuditoYTeCobro.controller;
 
+import com.examen2.teLoAuditoYTeCobro.domain.Client;
 import com.examen2.teLoAuditoYTeCobro.domain.Contact;
+import com.examen2.teLoAuditoYTeCobro.service.ClientService;
 import com.examen2.teLoAuditoYTeCobro.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ public class ContactController {
 
     @Autowired
     ContactService contactService;
+    @Autowired
+    ClientService clientService;
 
    @RequestMapping(value = "/listContacts")
     public String contactList(Model model){
@@ -28,6 +32,8 @@ public class ContactController {
 
     @RequestMapping(value = "/addContact", method = RequestMethod.GET)
     public String contactListPage(Model model){
+        List<Client> clientList = clientService.getAll();
+        model.addAttribute("clients", clientList);
         model.addAttribute(new Contact());
         return "addContact";
     }

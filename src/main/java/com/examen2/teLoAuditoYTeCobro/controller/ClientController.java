@@ -38,16 +38,6 @@ public class ClientController {
         return "listClients";
     }
 
-   /* @RequestMapping(value = "/addClient")
-    public String contactList(Model model){
-        List<Contact> contactsAL = new ArrayList<>();
-        model.addAttribute("contact", contactsAL);
-        List<Contact> contactList = contactService.getAll();
-        contactsAL = contactList;
-        model.addAttribute("contactsALL", contactsAL);
-        return "addClient";
-    }*/
-
     @RequestMapping(value = "/addClient", method = RequestMethod.GET)
     public String clientListPage(Model model){
         List<Contact> contactList = contactService.getAll();

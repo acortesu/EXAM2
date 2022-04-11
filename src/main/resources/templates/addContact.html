@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html"></meta>
     <title>Agregar contacto</title>
 </head>
 <body>
 <h1>Insertar</h1>
-<form action="#" th:action="@{/addContact/{id}(id=${id})}" th:object="${contact}" method="post">
+<form action="#" th:action="@{/addContact}" th:object="${contact}" method="post">
 
     <label for="name">Nombre</label>
     <input type="text" th:field="*{name}"  id="name"/>
@@ -22,6 +23,13 @@
 
     <label for="phoneNumber">Número de teléfono</label>
     <input type="text" th:field="*{phoneNumber}"  id="phoneNumber"/>
+
+    <select name="client" th:field="*{client}">
+        <option value="">Seleccione un cliente:</option>
+        <option th:each="clientList : ${clients}"
+                th:value="${clientList.getID}"
+                th:text="${clientList.getName()}"></option>
+    </select>
 
     <input type="submit" value="add entry">
 
