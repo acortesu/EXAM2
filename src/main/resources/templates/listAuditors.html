@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="../style/style.css" type="text/css" />
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h1>Lista de auditores</h1>
+<ul>
+    <div th:each="entry,status : ${auditor}">
+        <li>
+            <div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.name}">Nombre del auditor</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.lastName1}">Primer apellido</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.lastName2}">Segundo apellido</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.address}">Dirección</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.dateOfBirth}">Fecha de Nacimiento</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.travelAvailability}">Disponible para viajar</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.email}">Correo electrónico</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.status}">Estado</span></p>
+                </div>
+            </div>
+            <a th:href="@{/editAuditor/{id}(id=${entry.id})}">Modificar auditor</a>
+        </li>
+    </div>
+</ul>
+<a href="/">Volver al menú principal</a>
+</body>
+</html>

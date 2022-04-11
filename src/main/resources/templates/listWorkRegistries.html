@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Lista de auditores</h1>
+<ul>
+  <div th:each="entry,status : ${auditor}">
+    <li>
+      <div>
+        <div class="tl-body">
+          <p><span th:text="${entry.auditDate}">Fecha de la auditoría</span></p>
+        </div>
+        <div class="tl-body">
+          <p><span th:text="${entry.name}">Nombre del cliente</span></p>
+        </div>
+        <div class="tl-body">
+          <p><span th:text="${entry.area}">Area</span></p>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>
+<a href="/">Volver al menú principal</a>
+</body>
+</html>
