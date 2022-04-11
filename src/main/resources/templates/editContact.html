@@ -24,6 +24,13 @@
     <label for="phoneNumber">Número de teléfono</label>
     <input type="text" th:field="*{phoneNumber}"  id="phoneNumber"/>
 
+    <select name="client" th:field="*{client}">
+        <option value="">Seleccione un cliente:</option>
+        <option th:each="clientList : ${clientsAll}"
+                th:value="${clientList.getId()}"
+                th:text="${clientList.getName()}"></option>
+    </select>
+
     <input type="submit" value="Guardar Cambios">
 
 </form>

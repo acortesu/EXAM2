@@ -46,6 +46,8 @@ public class ContactController {
 
     @RequestMapping(value = "/editContact/{id}")
     public String editContact(Model model, @PathVariable int id) {
+        List<Client> clientList = clientService.getAll();
+        model.addAttribute("clientsAll", clientList);
         Optional<Contact> contactToEdit = contactService.getById(id);
         if (contactToEdit.isPresent()){
             model.addAttribute("contactToEdit", contactToEdit);

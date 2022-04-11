@@ -26,6 +26,12 @@
                 <div class="tl-body">
                     <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
                 </div>
+                <div class="tl-body">
+                    <ul th:each="cli: ${entry.client}">
+                        <li th:text="${cli.getName}"></li>
+                    </ul>
+                  <!--  <p><span th:text="*{entry.client}">Cliente</span></p>-->
+                </div>
             </div>
             <a th:href="@{/editContact/{id}(id=${entry.id})}">Editar contacto</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
