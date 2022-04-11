@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <meta http-equiv="Content-Type" content="text/html">
+    <title>Editar cliente</title>
+</head>
+<body>
+<h1>Editar</h1>
+<form action="#" th:action="@{/editClient/{id}(id=${id})}" th:object="${clientToEdit}" method="post">
+
+    <label for="name">Nombre</label>
+    <input type="text" th:field="*{name}"  id="name"/>
+
+    <label for="legalId">Cédula Jurídica</label>
+    <input type="text" th:field="*{legalId}"  id="legalId"/>
+
+    <label for="adress">Dirección</label>
+    <input type="text" th:field="*{adress}"  id="adress"/>
+
+    <label for="phoneNumber">Número de teléfono</label>
+    <input type="text" th:field="*{phoneNumber}"  id="phoneNumber"/>
+
+    <input type="submit" value="Guardar Cambios">
+
+</form>
+</body>
+</html>

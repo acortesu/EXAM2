@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar contacto</title>
+</head>
+<body>
+<h1>Insertar</h1>
+<form action="#" th:action="@{/addContact/{id}(id=${id})}" th:object="${contact}" method="post">
+
+    <label for="name">Nombre</label>
+    <input type="text" th:field="*{name}"  id="name"/>
+
+    <label for="lastName1">Primer apellido</label>
+    <input type="text" th:field="*{lastName1}"  id="lastName1"/>
+
+    <label for="lastName2">Segundo apellido</label>
+    <input type="text" th:field="*{lastName2}"  id="lastName2"/>
+
+    <label for="email">Correo electrónico</label>
+    <input type="text" th:field="*{email}"  id="email"/>
+
+    <label for="phoneNumber">Número de teléfono</label>
+    <input type="text" th:field="*{phoneNumber}"  id="phoneNumber"/>
+
+    <input type="submit" value="add entry">
+
+</form>
+<a href="/">Volver al principal</a>
+
+</body>
+</html>

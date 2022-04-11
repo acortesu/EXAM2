@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html"></meta>
+    <title>Agregar cliente</title>
+</head>
+<body>
+<h1>Insertar</h1>
+<form action="#" th:action="@{/addClient}" th:object="${client}" method="post">
+
+    <label for="name">Nombre</label>
+    <input type="text" th:field="*{name}"  id="name"/>
+
+    <label for="legalId">Cédula Jurídica</label>
+    <input type="text" th:field="*{legalId}"  id="legalId"/>
+
+    <label for="adress">Dirección</label>
+    <input type="text" th:field="*{adress}"  id="adress"/>
+
+    <label for="phoneNumber">Número de teléfono</label>
+    <input type="text" th:field="*{phoneNumber}"  id="phoneNumber"/>
+
+    <select name="contact" th:field="*{contacts}">
+        <option value="">Seleccione un contacto:</option>
+        <option th:each="contactList : ${contacts}"
+                th:value="${contactList.getId()}"
+                th:text="${contactList.getName +' '+ contactList.getLastName1()}"></option>
+    </select>
+
+    <input type="submit" value="Agregar cliente">
+
+</form>
+<a href="/addContact">Agregue un nuevo contacto</a>
+<a href="/">Volver al principal</a>
+
+</body>
+</html>

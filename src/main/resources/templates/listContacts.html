@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html"></meta>
+    <title>Lista de contactos</title>
+</head>
+<body>
+<h1>Bienvenidos a TeLoAuditoYTeCobro</h1>
+<h2>Listado de todos los contactos</h2>
+<ul>
+    <div th:each="entry,status : ${contact}">
+        <li>
+            <div></div>
+            <div>
+                <div>
+                    <h4><span th:text="${entry.name}">Nombre</span></h4>
+                    <p><small>
+                        <span th:text="${entry.lastName1}">Primer apellido</span></small></p>
+                    <p><small>
+                        <span th:text="${entry.lastName2}">Segundo apellido</span></small></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.email}">Correo electrónico</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
+                </div>
+            </div>
+            <a th:href="@{/editContact/{id}(id=${entry.id})}">Editar contacto</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/deleteContact/{id}(id=${entry.id})}">Borrar contacto</a>
+        </li>
+    </div>
+</ul>
+
+<a href="/">Regresar</a>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html"></meta>
+    <title>Lista de clientes</title>
+</head>
+<body>
+<h1>Bienvenidos a TeLoAuditoYTeCobro</h1>
+<h2>Listado de todos los clientes</h2>
+<ul>
+    <div th:each="entry,status : ${client}">
+        <li>
+            <div></div>
+            <div>
+                <div>
+                    <h4><span th:text="${entry.name}">Nombre</span></h4>
+                    <p><small>
+                        <span th:text="${entry.legalId}">Cédula Jurídica</span></small></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.adress}">Dirección</span></p>
+                </div>
+                <div class="tl-body">
+                    <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
+                </div>
+                <div class="tl-body">
+                    <tr th:each="contacts,iter : ${entry.contacts}">
+                        <th scope="row" th:text="${contacts.name}"></th>
+                        <th scope="row" th:text="${contacts.getLastName1()}"></th>
+                        <th scope="row" th:text="${contacts.getLastName2()}"></th>
+                    </tr>
+                </div>
+            </div>
+
+            <!--<a th:href="@{/editClient/{id}(id=${entry.id})}">Editar cliente</a>
+            &nbsp;&nbsp;&nbsp;&nbs p;&nbsp;&nbsp;
+            <a th:href="@{/deleteClient/{id}(id=${entry.id})}">Borrar cliente</a>-->
+        </li>
+    </div>
+</ul>
+
+<a href="/">Regresar</a>
+</body>
+</html>
