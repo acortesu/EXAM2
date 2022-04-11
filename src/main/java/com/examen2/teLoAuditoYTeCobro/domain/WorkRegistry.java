@@ -2,10 +2,9 @@ package com.examen2.teLoAuditoYTeCobro.domain;
 
 import org.hibernate.jdbc.Work;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Entity
@@ -17,16 +16,39 @@ public class WorkRegistry {
     private Long id;
     private Date auditDate;
     private String area;
-    private String name;
 
-    public WorkRegistry(Long id, Date auditDate, String area, String name) {
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CLIENT_ID", referencedColumnName = "ID")
+    private Client client;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "AUDITOR_ID", referencedColumnName = "ID")
+    private Auditor auditor;
+
+    @Transient
+    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+
+    public WorkRegistry(Long id, String auditDate, String area, Client client, Auditor auditor) throws ParseException  {
         this.id = id;
-        this.auditDate = auditDate;
+        this.auditDate = format.parse(auditDate);
         this.area = area;
-        this.name = name;
+        this.client  = client;
+        this.auditor = auditor;
     }
 
     public WorkRegistry(){}
+
+    public void setAuditDate(Date auditDate) {
+        this.auditDate = auditDate;
+    }
+
+    public Auditor getAuditor() {
+        return auditor;
+    }
+
+    public void setAuditor(Auditor auditor) {
+        this.auditor = auditor;
+    }
 
     public Long getId() {
         return id;
@@ -40,8 +62,8 @@ public class WorkRegistry {
         return auditDate;
     }
 
-    public void setAuditDate(Date auditDate) {
-        this.auditDate = auditDate;
+    public void setAuditDate(String auditDate)  throws ParseException  {
+        this.auditDate = format.parse(auditDate);
     }
 
     public String getArea() {
@@ -52,20 +74,20 @@ public class WorkRegistry {
         this.area = area;
     }
 
-    public String getName() {
-        return name;
+    public Client getClient() {
+        return client;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public String toString() {
         StringBuilder value = new StringBuilder("JournalEntry(");
         value.append("Id: ");
         value.append(id);
-        value.append(",Name: ");
-        value.append(name);
+        value.append(",Client Name: ");
+        value.append(client);
         value.append(",Area: ");
         value.append(area);
         value.append(",Audit Date: ");

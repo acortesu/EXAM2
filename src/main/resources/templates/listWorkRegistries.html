@@ -10,12 +10,23 @@
   <div th:each="entry,status : ${auditor}">
     <li>
       <div>
+        <p>Fecha de la auditoria:</p>
         <div class="tl-body">
           <p><span th:text="${entry.auditDate}">Fecha de la auditoría</span></p>
         </div>
+        <p>Nombre del cliente:</p>
         <div class="tl-body">
-          <p><span th:text="${entry.name}">Nombre del cliente</span></p>
+          <ul th:each="cli: ${entry.client}">
+            <li th:text="${cli.getName}"></li>
+          </ul>
         </div>
+        <p>Auditor:</p>
+        <div class="tl-body">
+          <ul th:each="cli: ${entry.auditor}">
+            <li th:text="${cli.getName}"></li>
+          </ul>
+        </div>
+        <p>Area:</p>
         <div class="tl-body">
           <p><span th:text="${entry.area}">Area</span></p>
         </div>

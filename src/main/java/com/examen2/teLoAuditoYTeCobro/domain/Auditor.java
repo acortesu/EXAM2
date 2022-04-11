@@ -1,5 +1,7 @@
 package com.examen2.teLoAuditoYTeCobro.domain;
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Entity
@@ -15,7 +17,24 @@ public class Auditor {
     private Boolean travelAvailability;
     private Boolean status = true;
 
-    public Auditor(Long id, String name, String lastName1, String lastName2, String address, int phoneNumber, Date dateOfBirth, String email, String auditSpecialty, Boolean travelAvailability, Boolean status) {
+    @Transient
+    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+
+
+    public Auditor(Long id, String name, String lastName1, String lastName2, String address, int phoneNumber, String dateOfBirth, String email, String auditSpecialty, Boolean travelAvailability, Boolean status) throws ParseException  {
+        this.id = id;
+        this.name = name;
+        this.lastName1 = lastName1;
+        this.lastName2 = lastName2;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = format.parse(dateOfBirth);
+        this.email = email;
+        this.auditSpecialty = auditSpecialty;
+        this.travelAvailability = travelAvailability;
+        this.status = status;
+    }
+    public Auditor(Long id, String name, String lastName1, String lastName2, String address, int phoneNumber, Date dateOfBirth, String email, String auditSpecialty, Boolean travelAvailability, Boolean status) throws ParseException  {
         this.id = id;
         this.name = name;
         this.lastName1 = lastName1;
@@ -83,8 +102,9 @@ public class Auditor {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+
+    public void setDateOfBirth(String dateOfBirth) throws ParseException  {
+        this.dateOfBirth = format.parse(dateOfBirth);
     }
 
     public String getAuditSpecialty() {

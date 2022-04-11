@@ -12,12 +12,24 @@
         <input type="text" th:field="*{auditDate}"  id="auditDate"/>
     </div>
     <div>
-        <label for="lastName1">Nombre del Cliente</label>
-        <input type="text" th:field="*{name}"  id="lastName1"/>
+        <select name="contact" th:field="*{client}">
+            <option value="">Seleccione el cliente:</option>
+            <option th:each="clientList : ${clients}"
+                    th:value="${clientList.getId()}"
+                    th:text="${clientList.getName()}"></option>
+        </select>
     </div>
     <div>
         <label for="area">Area</label>
         <input type="text" th:field="*{area}"  id="area"/>
+    </div>
+    <div>
+        <select name="contact" th:field="*{auditor}">
+            <option value="">Seleccione el auditor:</option>
+            <option th:each="auditorList : ${auditors}"
+                    th:value="${auditorList.getId()}"
+                    th:text="${auditorList.getName()+''+auditorList.getLastName1()}"></option>
+        </select>
     </div>
     <div>
         <input type="submit" value="add entry">

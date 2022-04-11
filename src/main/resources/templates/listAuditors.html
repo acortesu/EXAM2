@@ -10,32 +10,43 @@
     <div th:each="entry,status : ${auditor}">
         <li>
             <div>
+                <p>Nombre del auditor:</p>
                 <div class="tl-body">
                     <p><span th:text="${entry.name}">Nombre del auditor</span></p>
                 </div>
+                <p>Primer Apellido:</p>
                 <div class="tl-body">
                     <p><span th:text="${entry.lastName1}">Primer apellido</span></p>
                 </div>
+                <p>Segundo Apellido:</p>
                 <div class="tl-body">
                     <p><span th:text="${entry.lastName2}">Segundo apellido</span></p>
                 </div>
+                <p>Dirección:</p>
                 <div class="tl-body">
                     <p><span th:text="${entry.address}">Dirección</span></p>
                 </div>
+                <p>Fecha de Nacimiento:</p>
                 <div class="tl-body">
                     <p><span th:text="${entry.dateOfBirth}">Fecha de Nacimiento</span></p>
                 </div>
+                <p>Numero de telefono:</p>
                 <div class="tl-body">
                     <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
                 </div>
-                <div class="tl-body">
-                    <p><span th:text="${entry.travelAvailability}">Disponible para viajar</span></p>
+                <p>Disponibilidad para viajar:</p>
+                <div th:switch="${entry.travelAvailability}">
+                    <p th:case="${false}">No</p>
+                    <p th:case="${true}">Si</p>
                 </div>
+                <p>Correo electrónico:</p>
                 <div class="tl-body">
                     <p><span th:text="${entry.email}">Correo electrónico</span></p>
                 </div>
-                <div class="tl-body">
-                    <p><span th:text="${entry.status}">Estado</span></p>
+                <p>Estado:</p>
+                <div th:switch="${entry.status}">
+                    <p th:case="${false}">Inactivo</p>
+                    <p th:case="${true}">Activo</p>
                 </div>
             </div>
             <a th:href="@{/editAuditor/{id}(id=${entry.id})}">Modificar auditor</a>

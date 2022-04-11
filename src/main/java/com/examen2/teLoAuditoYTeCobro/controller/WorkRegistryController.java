@@ -1,6 +1,10 @@
 package com.examen2.teLoAuditoYTeCobro.controller;
 
+import com.examen2.teLoAuditoYTeCobro.domain.Auditor;
+import com.examen2.teLoAuditoYTeCobro.domain.Client;
 import com.examen2.teLoAuditoYTeCobro.domain.WorkRegistry;
+import com.examen2.teLoAuditoYTeCobro.service.AuditorService;
+import com.examen2.teLoAuditoYTeCobro.service.ClientService;
 import com.examen2.teLoAuditoYTeCobro.service.WorkRegistryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +25,12 @@ public class WorkRegistryController {
     @Autowired
     WorkRegistryService workRegistryService;
 
+    @Autowired
+    ClientService clientService;
+
+    @Autowired
+    AuditorService auditorService;
+
     @RequestMapping("/listWorkRegistries")
     public String listAuditors(Model model){
         List<WorkRegistry> results = workRegistryService.getAll();
@@ -30,6 +40,10 @@ public class WorkRegistryController {
 
     @RequestMapping(value = "/addWorkRegistry", method = RequestMethod.GET)
     public String navegarPaginaInsertar(Model model){
+        List<Client> clientList = clientService.getAll();
+        model.addAttribute("clients", clientList);
+        List<Auditor> auditorList = auditorService.getAll();
+        model.addAttribute("auditors", auditorList);
         model.addAttribute(new WorkRegistry());
         return "addWorkRegistry";
     }
@@ -55,6 +69,8 @@ public class WorkRegistryController {
     public String guardarCambios(WorkRegistry workRegistry, BindingResult result, Model model, @PathVariable int id) {
         workRegistryService.updateWorkRegistry(workRegistry);
         return "success";
-
     }
+
+
+
 }
