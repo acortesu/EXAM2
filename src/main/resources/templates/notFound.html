@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Operacion exitosa</title>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <meta content="text/html" http-equiv="Content-Type">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Error</h1>
-<p>La entrada no existe </p>
-<a href="/">Regresar</a>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+            </button>
+            <a class="navbar-brand" href="/">Te lo Audito y te lo Cobro</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clientes
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addClient">Agregar un cliente nuevo</a></li>
+                        <li><a href="/listClients">Listar todos los clientes</a></li>
+                        <li><a href="/listContacts">Lista de todos los contactos</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auditores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addAuditor">Agregar un auditor nuevo</a></li>
+                        <li><a href="/listAuditors">Listar todos los auditores</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Registro de Trabajo
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addWorkRegistry">Agregar un registro de trabajo nuevo</a></li>
+                        <li><a href="/listWorkRegistries">Listar todas las visitas de trabajo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+
+        <div class="col-sm-8 text-left">
+            <h1>Error</h1>
+            <p>La entrada no existe </p>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>Te lo Audito y te lo Cobro® 2022</p>
+</footer>
+
 </body>
 </html>

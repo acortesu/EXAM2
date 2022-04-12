@@ -1,45 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html"></meta>
     <title>Lista de contactos</title>
+    <meta charset="UTF-8">
+    <meta content="text/html" http-equiv="Content-Type">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Bienvenidos a TeLoAuditoYTeCobro</h1>
-<h2>Listado de todos los contactos</h2>
-<ul>
-    <div th:each="entry,status : ${contact}">
-        <li>
-            <div></div>
-            <div>
-                <div>
-                    <h4><span th:text="${entry.name}">Nombre</span></h4>
-                    <p><small>
-                        <span th:text="${entry.lastName1}">Primer apellido</span></small></p>
-                    <p><small>
-                        <span th:text="${entry.lastName2}">Segundo apellido</span></small></p>
-                </div>
-                <div class="tl-body">
-                    <p><span th:text="${entry.email}">Correo electrónico</span></p>
-                </div>
-                <div class="tl-body">
-                    <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
-                </div>
-                <div class="tl-body">
-                    <ul th:each="cli: ${entry.client}">
-                        <li th:text="${cli.getName}"></li>
-                    </ul>
-                  <!--  <p><span th:text="*{entry.client}">Cliente</span></p>-->
-                </div>
-            </div>
-            <a th:href="@{/editContact/{id}(id=${entry.id})}">Editar contacto</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a th:href="@{/deleteContact/{id}(id=${entry.id})}">Borrar contacto</a>
-        </li>
-    </div>
-</ul>
 
-<a href="/">Regresar</a>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+            </button>
+            <a class="navbar-brand" href="/">Te lo Audito y te lo Cobro</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clientes
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addClient">Agregar un cliente nuevo</a></li>
+                        <li><a href="/listClients">Listar todos los clientes</a></li>
+                        <li><a href="/listContacts">Lista de todos los contactos</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auditores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addAuditor">Agregar un auditor nuevo</a></li>
+                        <li><a href="/listAuditors">Listar todos los auditores</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Registro de Trabajo
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addWorkRegistry">Agregar un registro de trabajo nuevo</a></li>
+                        <li><a href="/listWorkRegistries">Listar todas las visitas de trabajo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-8 text-left">
+            <h1>Listado de contactos</h1>
+
+            <ul class="list-group">
+                <div th:each="entry,status : ${contact}" class="bottomElement">
+                    <li class="list-group-item list-group-item-info" style="font-weight: bold; display: flex; justify-content: flex-start;">
+                        <span th:text="${entry.name}"><p>Nombre</p></span>
+                        <p>&nbsp;</p>
+                        <span th:text="${entry.lastName1}"></span>
+                        <p>&nbsp;</p>
+                        <span th:text="${entry.lastName2}"></span>
+                    </li>
+                    <li class="list-group-item" style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Correo electrónico:&nbsp;</p><p> </p>
+                        <span th:text="${entry.email}"></span>
+                    </li>
+                    <li class="list-group-item"  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Número de teléfono:&nbsp;</p><p> </p>
+                        <span th:text="${entry.phoneNumber}"></span>
+                    </li>
+                    <li class="list-group-item "  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Cliente:&nbsp;</p><p> </p>
+                        <tr th:each="cli: ${entry.client}">
+                            <th th:text="${cli.getName}"></th>
+                        </tr>
+                    </li>
+                    <div  style="margin-bottom:45px; margin-top: 15px">
+                        <a th:href="@{/editContact/{id}(id=${entry.id})}" class="btn btn-default">Editar contacto</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a th:href="@{/deleteContact/{id}(id=${entry.id})}" class="btn btn-default">Borrar contacto</a>
+
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>Te lo Audito y te lo Cobro® 2022</p>
+</footer>
+
 </body>
 </html>

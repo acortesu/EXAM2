@@ -12,7 +12,7 @@ public class Auditor {
     private Long id;
     private String name, lastName1, lastName2, address, email;
     private int phoneNumber;
-    private Date dateOfBirth;
+    private Date dateOfBirth = new Date();
     private String auditSpecialty;
     private Boolean travelAvailability;
     private Boolean status = true;
@@ -98,10 +98,9 @@ public class Auditor {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public String getDateOfBirth() {
+        return format.format(dateOfBirth);
     }
-
 
     public void setDateOfBirth(String dateOfBirth) throws ParseException  {
         this.dateOfBirth = format.parse(dateOfBirth);

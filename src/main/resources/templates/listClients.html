@@ -1,45 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html"></meta>
     <title>Lista de clientes</title>
+    <meta charset="UTF-8">
+    <meta content="text/html" http-equiv="Content-Type">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Bienvenidos a TeLoAuditoYTeCobro</h1>
-<h2>Listado de todos los clientes</h2>
-<ul>
-    <div th:each="entry,status : ${client}">
-        <li>
-            <div></div>
-            <div>
-                <div>
-                    <h4><span th:text="${entry.name}">Nombre</span></h4>
-                    <p><small>
-                        <span th:text="${entry.legalId}">Cédula Jurídica</span></small></p>
-                </div>
-                <div class="tl-body">
-                    <p><span th:text="${entry.adress}">Dirección</span></p>
-                </div>
-                <div class="tl-body">
-                    <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
-                </div>
-                <div class="tl-body">
-                    <tr th:each="contacts,iter : ${entry.contacts}">
-                        <th scope="row" th:text="${contacts.name}"></th>
-                        <th scope="row" th:text="${contacts.getLastName1()}"></th>
-                        <th scope="row" th:text="${contacts.getLastName2()}"></th>
-                    </tr>
-                </div>
-            </div>
 
-            <!--<a th:href="@{/editClient/{id}(id=${entry.id})}">Editar cliente</a>
-            &nbsp;&nbsp;&nbsp;&nbs p;&nbsp;&nbsp;
-            <a th:href="@{/deleteClient/{id}(id=${entry.id})}">Borrar cliente</a>-->
-        </li>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+            </button>
+            <a class="navbar-brand" href="/">Te lo Audito y te lo Cobro</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clientes
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addClient">Agregar un cliente nuevo</a></li>
+                        <li><a href="/listClients">Listar todos los clientes</a></li>
+                        <li><a href="/listContacts">Lista de todos los contactos</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auditores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addAuditor">Agregar un auditor nuevo</a></li>
+                        <li><a href="/listAuditors">Listar todos los auditores</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Registro de Trabajo
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addWorkRegistry">Agregar un registro de trabajo nuevo</a></li>
+                        <li><a href="/listWorkRegistries">Listar todas las visitas de trabajo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-</ul>
+</nav>
 
-<a href="/">Regresar</a>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-8 text-left">
+            <h1>Listado de clientes</h1>
+
+            <ul class="list-group">
+                <div th:each="entry,status : ${client}" class="bottomElement">
+                    <li class="list-group-item list-group-item-info" style="font-weight: bold;">
+                        <span th:text="${entry.name}"><p>Nombre</p></span>
+                    </li>
+                    <li class="list-group-item" style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Cédula Jurídica:&nbsp;</p><p> </p>
+                        <span th:text="${entry.legalId}"></span>
+                    </li>
+                    <li class="list-group-item"  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Dirección:&nbsp;</p><p> </p>
+                        <span th:text="${entry.adress}"></span>
+                    </li>
+                    <li class="list-group-item"  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Número de teléfono:&nbsp;</p><p> </p>
+                        <span th:text="${entry.phoneNumber}"></span>
+                    </li>
+                    <li class="list-group-item "  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Contactos:&nbsp;</p><p> </p>
+                        <tr th:each="contacts,iter : ${entry.contacts}">
+                            <th scope="row" th:text="${contacts.name}"></th>
+                            <th scope="row" th:text="${contacts.getLastName1()}"></th>
+                            <th scope="row" th:text="${contacts.getLastName2()}"></th>
+                            <th scope="row" th:text="' - '"></th>
+                        </tr>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>Te lo Audito y te lo Cobro® 2022</p>
+</footer>
+
 </body>
 </html>

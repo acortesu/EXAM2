@@ -1,40 +1,104 @@
 <!DOCTYPE html>
 <html lang="en-US" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Title</title>
+    <meta charset="UTF-8">
+    <meta content="text/html" http-equiv="Content-Type">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1> Registro de trabajo</h1>
-<form action="#" th:action="@{/addWorkRegistry}" th:object="${workRegistry}" method="post">
-    <div>
-        <label for="auditDate">Fecha</label>
-        <input type="text" th:field="*{auditDate}"  id="auditDate"/>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+            </button>
+            <a class="navbar-brand" href="/">Te lo Audito y te lo Cobro</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clientes
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addClient">Agregar un cliente nuevo</a></li>
+                        <li><a href="/listClients">Listar todos los clientes</a></li>
+                        <li><a href="/listContacts">Lista de todos los contactos</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auditores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addAuditor">Agregar un auditor nuevo</a></li>
+                        <li><a href="/listAuditors">Listar todos los auditores</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Registro de Trabajo
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addWorkRegistry">Agregar un registro de trabajo nuevo</a></li>
+                        <li><a href="/listWorkRegistries">Listar todas las visitas de trabajo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div>
-        <select name="contact" th:field="*{client}">
-            <option value="">Seleccione el cliente:</option>
-            <option th:each="clientList : ${clients}"
-                    th:value="${clientList.getId()}"
-                    th:text="${clientList.getName()}"></option>
-        </select>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+
+        <div class="col-sm-8 text-left">
+            <h1>Agregar un nuevo registro de trabajo</h1>
+
+            <form action="#" th:action="@{/addWorkRegistry}" th:object="${workRegistry}" method="post">
+                <div class="form-group">
+                        <label for="auditDate">Fecha</label>
+                        <input type="text" th:field="*{auditDate}" id="auditDate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Cliente:</label>
+                    <select name="contact" th:field="*{client}" class="form-control" id="sel1">
+                        <option value="">Seleccione un cliente:</option>
+                        <option th:each="clientList : ${clients}"
+                                th:value="${clientList.getId()}"
+                                th:text="${clientList.getName()}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="area">Área</label>
+                    <input type="text" th:field="*{area}" id="area" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="sel2">Auditor:</label>
+                    <select name="contact" th:field="*{auditor}" class="form-control" id="sel2">
+                        <option value="">Seleccione un auditor:</option>
+                        <option th:each="auditorList : ${auditors}"
+                                th:value="${auditorList.getId()}"
+                                th:text="${auditorList.getName()+' '+auditorList.getLastName1()}"></option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-default">Agregar Registro</button>
+
+            </form>
+
+        </div>
     </div>
-    <div>
-        <label for="area">Area</label>
-        <input type="text" th:field="*{area}"  id="area"/>
-    </div>
-    <div>
-        <select name="contact" th:field="*{auditor}">
-            <option value="">Seleccione el auditor:</option>
-            <option th:each="auditorList : ${auditors}"
-                    th:value="${auditorList.getId()}"
-                    th:text="${auditorList.getName()+''+auditorList.getLastName1()}"></option>
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="add entry">
-    </div>
+</div>
+
 </form>
-<a href="/">Volver al menú principal</a>
+
+<footer class="container-fluid text-center">
+    <p>Te lo Audito y te lo Cobro® 2022</p>
+</footer>
+
 </body>
 </html>

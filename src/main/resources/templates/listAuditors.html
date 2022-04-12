@@ -2,57 +2,110 @@
 <html lang="en-US" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="../style/style.css" type="text/css" />
 <head>
-    <title>Title</title>
+    <title>Lista de auditores</title>
+    <meta charset="UTF-8">
+    <meta content="text/html" http-equiv="Content-Type">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Lista de auditores</h1>
-<ul>
-    <div th:each="entry,status : ${auditor}">
-        <li>
-            <div>
-                <p>Nombre del auditor:</p>
-                <div class="tl-body">
-                    <p><span th:text="${entry.name}">Nombre del auditor</span></p>
-                </div>
-                <p>Primer Apellido:</p>
-                <div class="tl-body">
-                    <p><span th:text="${entry.lastName1}">Primer apellido</span></p>
-                </div>
-                <p>Segundo Apellido:</p>
-                <div class="tl-body">
-                    <p><span th:text="${entry.lastName2}">Segundo apellido</span></p>
-                </div>
-                <p>Dirección:</p>
-                <div class="tl-body">
-                    <p><span th:text="${entry.address}">Dirección</span></p>
-                </div>
-                <p>Fecha de Nacimiento:</p>
-                <div class="tl-body">
-                    <p><span th:text="${entry.dateOfBirth}">Fecha de Nacimiento</span></p>
-                </div>
-                <p>Numero de telefono:</p>
-                <div class="tl-body">
-                    <p><span th:text="${entry.phoneNumber}">Número de teléfono</span></p>
-                </div>
-                <p>Disponibilidad para viajar:</p>
-                <div th:switch="${entry.travelAvailability}">
-                    <p th:case="${false}">No</p>
-                    <p th:case="${true}">Si</p>
-                </div>
-                <p>Correo electrónico:</p>
-                <div class="tl-body">
-                    <p><span th:text="${entry.email}">Correo electrónico</span></p>
-                </div>
-                <p>Estado:</p>
-                <div th:switch="${entry.status}">
-                    <p th:case="${false}">Inactivo</p>
-                    <p th:case="${true}">Activo</p>
-                </div>
-            </div>
-            <a th:href="@{/editAuditor/{id}(id=${entry.id})}">Modificar auditor</a>
-        </li>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+            </button>
+            <a class="navbar-brand" href="/">Te lo Audito y te lo Cobro</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clientes
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addClient">Agregar un cliente nuevo</a></li>
+                        <li><a href="/listClients">Listar todos los clientes</a></li>
+                        <li><a href="/listContacts">Lista de todos los contactos</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auditores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addAuditor">Agregar un auditor nuevo</a></li>
+                        <li><a href="/listAuditors">Listar todos los auditores</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Registro de Trabajo
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addWorkRegistry">Agregar un registro de trabajo nuevo</a></li>
+                        <li><a href="/listWorkRegistries">Listar todas las visitas de trabajo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-</ul>
-<a href="/">Volver al menú principal</a>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-8 text-left">
+            <h1>Listado de auditores</h1>
+
+            <ul class="list-group">
+                <div th:each="entry,status : ${auditor}" class="bottomElement">
+                    <li class="list-group-item list-group-item-info" style="font-weight: bold; display: flex; justify-content: flex-start;">
+                        <span th:text="${entry.name}"></span>
+                        <p>&nbsp;</p>
+                        <span th:text="${entry.lastName1}"></span>
+                        <p>&nbsp;</p>
+                        <span th:text="${entry.lastName2}"></span>
+                    </li>
+                    <li class="list-group-item"  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Dirección:&nbsp;</p>
+                        <span th:text="${entry.getAddress()}"></span>
+                    </li>
+                    <li class="list-group-item"  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Fecha de nacimiento:&nbsp;</p>
+                        <span th:text="${entry.dateOfBirth}"></span>
+                    </li>
+                    <li class="list-group-item" style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Número de teléfono:&nbsp;</p>
+                        <span th:text="${entry.phoneNumber}"></span>
+                    </li>
+                    <li class="list-group-item" style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Correo electrónico:&nbsp;</p>
+                        <span th:text="${entry.email}"></span>
+                    </li>
+                    <li class="list-group-item "  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Disponibilidad para viajar:&nbsp;</p>
+                        <tr th:switch="${entry.travelAvailability}">
+                            <th th:case="${false}">No</th>
+                            <th th:case="${true}">Si</th>
+                        </tr>
+                    </li>
+                    <li class="list-group-item "  style="display: flex; justify-content: flex-start;">
+                        <p style="font-weight: bold;">Estado:&nbsp;</p>
+                        <tr th:switch="${entry.status}">
+                            <th th:case="${false}">Inactivo</th>
+                            <th th:case="${true}">Activo</th>
+                        </tr>
+                    </li>
+
+                    <a th:href="@{/editAuditor/{id}(id=${entry.id})}"  class="btn btn-default">Modificar auditor</a>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>Te lo Audito y te lo Cobro® 2022</p>
+</footer>
+
 </body>
 </html>

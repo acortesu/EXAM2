@@ -1,24 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>TeLoAuditoYTeCobro</title>
     <meta charset="UTF-8">
     <meta content="text/html" http-equiv="Content-Type">
-    <title>TeLoAuditoYTeCobro</title>
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div>
-    <h1>Bienvenidos a TeLoAuditoYTeCobro</h1>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+            </button>
+            <a class="navbar-brand" href="/">Te lo Audito y te lo Cobro</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clientes
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addClient">Agregar un cliente nuevo</a></li>
+                        <li><a href="/listClients">Listar todos los clientes</a></li>
+                        <li><a href="/listContacts">Lista de todos los contactos</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auditores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addAuditor">Agregar un auditor nuevo</a></li>
+                        <li><a href="/listAuditors">Listar todos los auditores</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Registro de Trabajo
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addWorkRegistry">Agregar un registro de trabajo nuevo</a></li>
+                        <li><a href="/listWorkRegistries">Listar todas las visitas de trabajo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
+<div class="container-fluid text-center">
+    <div class="row content">
 
-    <a href="/addClient">Agregue un nuevo cliente</a> </br>
-    <a href="/listClients">Lista de todos los clientes</a> </br>
-    <a href="/listContacts">Lista de todos los contactos</a> </br>
-    <a href="/addAuditor">Agregar auditor</a></br>
-    <a href="/listAuditors">Listar Auditores</a></br>
-    <a href="/addWorkRegistry">Registro de trabajo</a></br>
-    <a href="/listWorkRegistries">Listar visitas de trabajo</a>
+        <div class="col-sm-8 text-left" style="margin-bottom: 250px">
+            <h1>Bienvenidos a <br>Te lo Audito Y te Cobro</h1>
+            <p>Seleccione una opción en el menú principal</p>
+            <hr>
+            <h3>Desarrollado por:</h3>
+            <p>Alina Zeledón</p>
+            <p>Alonso Cortés</p>
+        </div>
+    </div>
 </div>
+
+<footer class="container-fluid text-center">
+    <p>Te lo Audito y te lo Cobro® 2022</p>
+</footer>
 
 
 </body>
